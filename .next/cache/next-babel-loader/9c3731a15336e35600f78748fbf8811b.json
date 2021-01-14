@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default Button;","map":{"version":3,"sources":["/home/zuares/Documents/Project/ZCommerce/components/molecules/Button/index.js"],"names":["Button"],"mappings":"AAEA,eAAeA,MAAf","sourcesContent":["\n\nexport default Button;"]},"metadata":{},"sourceType":"module"}
