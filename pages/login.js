@@ -2,7 +2,7 @@ import React from 'react';
 
 function login() {
     return (
-        <div>
+        <div className=" h-screen w-screen">
             <div>
                 Gambar
             </div>
