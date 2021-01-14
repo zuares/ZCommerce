@@ -1,0 +1,27 @@
+.notify {
+  animation: SlideLeft 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes SlideLeft {
+  0% {
+    margin-left: 120%;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+
+.notify.exit {
+  animation: SlideRight 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes SlideRight {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: 120%;
+  }
+}

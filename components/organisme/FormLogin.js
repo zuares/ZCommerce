@@ -7,6 +7,7 @@ import { DataContext } from '../../store/GlobalState';
 import { postData } from '../../utils/fetchData';
 import { useRouter } from 'next/router';
 import Cookie from 'js-cookie'
+import Notify from '../molecules/Notify';
 
 
 function FormLogin() {
@@ -15,7 +16,8 @@ function FormLogin() {
     const [formData, setFormData] = useState(initialize)
     const { email, password } = formData
     const { state, dispatch } = useContext(DataContext)
-
+    const { notify } = state
+    console.log(notify);
     const onSubmit = async (e) => {
         e.preventDefault()
 
