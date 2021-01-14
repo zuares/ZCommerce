@@ -1,8 +1,7 @@
 
-function Form({ children }) {
-
+function Form({ children, ...rest }) {
     return (
-        <form >
+        <form {...rest} >
             {children}
         </form>
     );

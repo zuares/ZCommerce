@@ -1,7 +1,6 @@
 import React from 'react';
 import Input from './Input';
 
-
 function Fields({ type, ...rest }) {
     switch (type) {
         case "text":
@@ -9,8 +8,9 @@ function Fields({ type, ...rest }) {
         case "email":
             return <Input type={type} {...rest} />
         default:
-            break;
+            return null
     }
 }
+
 
 export default Fields;

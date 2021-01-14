@@ -1,4 +1,4 @@
-
+import React from 'react'
 const Input = ({ name, label, type, ...rest }) => {
     return (
         <div className="w-full">
@@ -9,3 +9,5 @@ const Input = ({ name, label, type, ...rest }) => {
 }
 
 export default Input
+
+
