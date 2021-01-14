@@ -7,6 +7,11 @@ function reducers(state, action) {
                 ...state,
                 notify: action.payload
             }
+        case Actions.Auth:
+            return {
+                ...state,
+                auth: action.payload
+            }
 
         default:
             return state

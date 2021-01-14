@@ -1,6 +1,7 @@
 
 export const Actions = {
-    Notify: "NOTIFY"
+    Notify: "NOTIFY",
+    Auth: "AUTH",
 }
 
 

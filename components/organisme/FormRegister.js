@@ -28,10 +28,14 @@ function FormRegister() {
         e.preventDefault();
         const errMsg = validate(formData)
         if (errMsg)
-            return dispatch({ type: "NOTIFY", payload: { err: errMsg } })
+            return dispatch({ type: "NOTIFY", payload: { msg: { err: errMsg } } })
 
         const res = await postData('auth/register', formData)
-        console.log(res);
+        if (res.err)
+            return dispatch({ type: "NOTIFY", payload: { msg: { err: res.err } } })
+
+
+        return dispatch({ type: "NOTIFY", payload: { msg: { success: `Successfully Register , Please Login` } } })
     }
 
 

@@ -9,7 +9,7 @@ connectDB()
 export default async (req, res) => {
     switch (req.method) {
         case "POST":
-            register(req, res)
+            return await register(req, res)
         default:
             return null
     }
@@ -31,7 +31,7 @@ const register = async (req, res) => {
             return res.status(400).json({ err: 'this Email has already exists' })
 
         const passwordHash = await bcrypt.hash(password, 12)
-        // console.log(passwordHash);
+
         // Buat data
         const newUser = new User({
             name, email,

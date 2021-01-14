@@ -2,7 +2,7 @@ import React from 'react';
 import Auth from '../components/layouts/Auth';
 import FormLogin from '../components/organisme/FormLogin';
 
-function login({ children }) {
+function login() {
     return (
         <Auth>
             <div className="mb-8">

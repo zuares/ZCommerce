@@ -5,7 +5,7 @@ import reducers from './Reducer';
 export const DataContext = createContext()
 
 function DataProvider({ children }) {
-    const initialState = { notify: '' }
+    const initialState = { notify: {}, auth: {} }
     const [state, dispatch] = useReducer(reducers, initialState)
 
     return (
