@@ -8,15 +8,17 @@ function FormLogin() {
     return (
         <Form>
             <div className="space-y-2" >
+                <Fields type="text" name="name" label="name" />
                 <Fields type="email" name="email" label="email" />
                 <Fields type="password" name="password" label="password" />
+                <Fields type="password" name="password2" label="confirm password" />
             </div>
             <div className="space-y-3 mt-4" >
-                <BtnPrimary block={true}>Login</BtnPrimary>
-                <span className="inline-block border-b">Belum punya akun ??</span>
+                <BtnPrimary block={true}>Register</BtnPrimary>
+                <span className="inline-block border-b">Sudah punya akun ??</span>
                 <div>
-                    <Link href="/register" >
-                        <a className="font-bold inline-block text-blue-400 " >Daftar disni</a>
+                    <Link href="/login" >
+                        <a className="font-bold inline-block text-blue-400 " >Login disni</a>
                     </Link>
                 </div>
             </div>
