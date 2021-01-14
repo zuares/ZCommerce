@@ -14,7 +14,7 @@ function FormLogin() {
                 <Fields type="password" name="password2" label="confirm password" />
             </div>
             <div className="space-y-3 mt-4" >
-                <BtnPrimary block={true}>Register</BtnPrimary>
+                <BtnPrimary block={true}>Rgister</BtnPrimary>
                 <span className="inline-block border-b">Sudah punya akun ??</span>
                 <div>
                     <Link href="/login" >
