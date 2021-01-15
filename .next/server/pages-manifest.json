@@ -3,10 +3,9 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/product/[id]": "pages/product/[id].js",
-  "/api/product": "pages/api/product.js",
-  "/api/auth/accessToken": "pages/api/auth/accessToken.js",
   "/login": "pages/login.js",
-  "/register": "pages/register.js",
-  "/cart": "pages/cart.js"
+  "/api/auth/accessToken": "pages/api/auth/accessToken.js",
+  "/product/[id]": "pages/product/[id].js",
+  "/api/product/[id]": "pages/api/product/[id].js",
+  "/api/product": "pages/api/product.js"
 }

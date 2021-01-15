@@ -8,6 +8,7 @@ module.exports = {
             colors: {
                 'true-gray': colors.trueGray,
                 'rose': colors.red,
+                'light-blue': colors.lightBlue
             },
             container: {
                 center: true

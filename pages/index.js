@@ -1,4 +1,4 @@
-import Container from "../components/atoms/Container";
+import Container from "../components/container/Container";
 import MainApp from "../components/layouts/MainApp";
 import CardProduct from "../components/molecules/Card/CardProduct";
 import { getData } from "../utils/fetchData"
