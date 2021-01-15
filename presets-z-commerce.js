@@ -11,11 +11,13 @@ module.exports = {
             },
             container: {
                 center: true
-            }
+            },
         },
     },
     variants: {
-        extend: {},
+        extend: {
+            opacity: ['disabled'],
+        },
     },
     plugins: [],
 }

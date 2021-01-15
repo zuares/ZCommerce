@@ -1,9 +1,17 @@
-import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
+import React, { useContext, useEffect } from 'react';
 import { DataContext } from '../../store/GlobalState';
 import Notify from '../molecules/Notify';
 
 function Auth({ children }) {
-    const { state: { notify } } = useContext(DataContext)
+    const { state } = useContext(DataContext)
+    const { notify, auth: { access_token } } = state
+    const router = useRouter()
+
+    useEffect(() => {
+        if (access_token) router.push('/')
+    }, [access_token])
+
     return (
         <div className=" h-screen w-screen flex bg-white relative">
             {notify.msg ? <Notify msg={notify.msg} /> : null}

@@ -16,8 +16,7 @@ function FormLogin() {
     const [formData, setFormData] = useState(initialize)
     const { email, password } = formData
     const { state, dispatch } = useContext(DataContext)
-    const { notify } = state
-    console.log(notify);
+
     const onSubmit = async (e) => {
         e.preventDefault()
 

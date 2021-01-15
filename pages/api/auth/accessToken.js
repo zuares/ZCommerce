@@ -14,8 +14,7 @@ export default async (req, res) => {
         const result = jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET)
         if (!result)
             return res.status(400).json({ err: 'Your token is incorect or has expired ' })
-        console.log(result);
-        const user = await User.findById({ result.id })
+        const user = await User.findById({ _id: result.id })
         if (!user)
             return res.status(400).json({ err: 'User doesnt exists' })
 
