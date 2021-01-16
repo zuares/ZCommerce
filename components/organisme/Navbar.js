@@ -10,19 +10,19 @@ import WrapNavbar from '../molecules/Navbar/WrapNavbar';
 import { DataContext } from '../../store/GlobalState';
 
 function Navbar({ }) {
-    const { state: { auth } } = useContext(DataContext)
+    const { state: { auth, cart } } = useContext(DataContext)
     return (
         <WrapNavbar>
             <Navbrand>ZCommerce</Navbrand>
             <NavMenu>
                 <NavItem>
-                    <NavLink href="/cart" className="flex gap-1" >
+                    <NavLink href="/cart" className="flex gap-1 relative" >
                         <IcCart className="w-5 h-5" />
                             Cart
-                        </NavLink>
+                            <span className={`block w-2 h-2 rounded-full ${cart.length > 0 && 'bg-yellow-400 top-0 absolute' || ''}`} ></span>
+                    </NavLink>
                 </NavItem>
                 <NavItem>
-
                     {
                         auth.access_token ?
                             <NavLink href="/profile" className="flex gap-2" >

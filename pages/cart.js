@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MainApp from '../components/layouts/MainApp'
 import Content from '../components/container/Content'
 import CartTable from '../components/molecules/Table/CartTable';
 import Fields from '../components/molecules/Fields';
+import { DataContext } from '../store/GlobalState';
 
 function cart() {
+    const { state: { cart } } = useContext(DataContext)
     return (
         <MainApp>
             <Content title="My Cart" >
@@ -12,7 +14,10 @@ function cart() {
 
                     <div className={`lg:w-7/12`} >
                         <h2 className={`text-true-gray-400 font-bold mb-8 inline-block border-b pb-2 `} >Your Items</h2>
-                        <CartTable />
+                        {
+                            cart.map((item, idx) => <CartTable key={idx} id={idx} item={item} />)
+                        }
+
                     </div>
 
                     <div className={`space-y-4 mt-8 lg:mt-0 md:w-8/12 lg:w-4/12 px-2 `}>

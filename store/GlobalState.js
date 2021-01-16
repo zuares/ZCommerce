@@ -6,9 +6,9 @@ import reducers from './Reducer';
 export const DataContext = createContext()
 
 function DataProvider({ children }) {
-    const initialState = { notify: {}, auth: {} }
+    const initialState = { notify: {}, auth: {}, cart: [] }
     const [state, dispatch] = useReducer(reducers, initialState)
-
+    const { cart } = state
     useEffect(() => {
 
         const fetchUser = async () => {
@@ -18,6 +18,16 @@ function DataProvider({ children }) {
 
         fetchUser()
     }, [])
+
+    useEffect(() => {
+        const MyCart = JSON.parse(localStorage.getItem('MyCart'))
+        if (MyCart)
+            return dispatch({ type: "CART", payload: MyCart })
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('MyCart', JSON.stringify(cart))
+    }, [cart])
 
     return (
         <DataContext.Provider value={{ state, dispatch }}>

@@ -1,10 +1,13 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
+import { addToCart } from '../../../store/Actions';
+import { DataContext } from '../../../store/GlobalState';
 import Card from "../Card";
 import CardImage from "../Card/CardImage";
 
-function CardProduct({ product: { _id, images, price, inStock } }) {
-
+function CardProduct({ product }) {
+    const { state: { cart }, dispatch } = useContext(DataContext)
+    const { _id, images, price, inStock } = product
     return (
         <Card className="shadow-lg  mt-2 bg-white rounded-t-lg overflow-hidden md:max-w-xs lg:w-72 xl:w-12/12" >
             <CardImage src={`${images[0].url}`}
@@ -18,10 +21,10 @@ function CardProduct({ product: { _id, images, price, inStock } }) {
                     <Link href={`/product/${_id}`}>
                         <a className="px-4 py-2 bg-gray-100 border border-blue-400 text-blue-400  focus:outline-none">View</a>
                     </Link>
-                    <button className={`shadow-md px-4 py-2 bg-yellow-400 text-gray-100 font-bold focus:outline-none  focus:ring-1 ring-blue-500 disabled:opacity-50`} disabled={inStock === 0 ? true : false}>Add To Cart</button>
+                    <button className={`shadow-md px-4 py-2 bg-yellow-400 text-gray-100 font-bold focus:outline-none  focus:ring-1 ring-blue-500 disabled:opacity-50`} disabled={inStock === 0} onClick={() => dispatch(addToCart(product, cart))} >Add To Cart</button>
                 </div>
             </div>
-        </Card>
+        </Card >
     );
 }
 

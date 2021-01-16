@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { inCrease, deCrease, deleteItem } from '../../../store/Actions';
+import { DataContext } from '../../../store/GlobalState';
 import IcDelete from '../../icons/IcDelete';
 
-function CartTable(props) {
+function CartTable({ item, id }) {
+    const { state, dispatch } = useContext(DataContext)
+    const { cart } = state
+    console.log(item);
     return (
         <table className={`table table-fixed  w-full border-separate   shadow-inner   pb-12`} >
             <thead className={`text-true-gray-300 border-b `} >
@@ -25,16 +30,16 @@ function CartTable(props) {
             </thead>
             <tbody className={`text-center text-gray-700`} >
                 <tr className={`p-20`}>
-                    <td className={`p-4  font-bold s`}>1</td>
-                    <td className={`p-4`}>Jeans</td>
+                    <td className={`p-4  font-bold s`}>{id + 1}</td>
+                    <td className={`p-4 capitalize`}>{item.title}</td>
                     <td className={`p-4`}>
-                        <button className={`px-2 bg-gray-300 text-white font-bold`} >-</button>
-                        <span className={`mx-3 font-bold text-sm text-blue-600 `} >2</span>
-                        <button className={`px-2 bg-green-300 text-white font-bold`} >+</button>
+                        <button className={`px-2 bg-gray-300 text-white focus:outline-none disabled:opacity-50 font-bold `} onClick={() => (item.quantity < 2) ? dispatch(deleteItem(cart, item._id)) : dispatch(deCrease(cart, item._id))}  >-</button>
+                        <span className={`mx-3 font-bold text-sm text-blue-600 `} >{item.quantity}</span>
+                        <button className={`px-2 bg-green-300 text-white focus:outline-none disabled:opacity-50 font-bold`} onClick={() => dispatch(inCrease(cart, item._id))} disabled={item.quantity === item.inStock ? true : false}  >+</button>
                     </td >
-                    <td className={`p-4`}>$ 5</td>
+                    <td className={`p-4`}>$ {item.price}</td>
                     <td className={`p-4`}>
-                        <button className={`p-1 bg-red-400`}>
+                        <button className={`p-1 bg-red-400`} onClick={() => dispatch(deleteItem(cart, item._id))} >
                             <IcDelete className={`w-5 h-5 text-white`} />
                         </button>
                     </td>
