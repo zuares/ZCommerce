@@ -3,7 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/cart": "pages/cart.js",
-  "/api/auth/accessToken": "pages/api/auth/accessToken.js",
-  "/api/product": "pages/api/product.js"
+  "/cart": "pages/cart.js"
 }
