@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const orderShcema = new mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
-        ref: 'user'
+        ref: 'users'
     },
     address: String,
     mobile: String,
