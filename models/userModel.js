@@ -41,6 +41,6 @@ const userSchema = new mongoose.Schema({
     }
 )
 
-const Dataset = mongoose.models.user || mongoose.model('user', userSchema);
+const Dataset = mongoose.models.user || mongoose.model(`user`, userSchema);
 
 export default Dataset;

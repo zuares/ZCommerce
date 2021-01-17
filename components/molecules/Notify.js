@@ -37,7 +37,6 @@ function Notify({ msg }) {
             handleCloseNotif()
         }
     }, [exit])
-    console.log(msg);
     return (
         <div onClick={handleCloseNotif} className=" fixed top-2 right-2 w-72">
             <div className={`relative notify shadow-md rounded-sm overflow-hidden bg-white mt-4 text-gray-700 ${exit ? 'exit' : ''}`} >

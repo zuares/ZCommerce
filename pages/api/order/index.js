@@ -18,12 +18,14 @@ const createOrder = async (req, res) => {
     try {
         const result = await auth(req, res)
         const { address, mobile, cart, total } = req.body
-
         const newOrder = new Order({
-            user: result._id, address, mobile, cart, total
+            user: result.id, address, mobile, cart, total
         })
-        newOrder.save()
+        cart.filter(item => {
+            return sold(item._id, item.quantity, item.inStock, item.sold)
+        })
 
+        newOrder.save()
         return res.json({
             msg: 'Payment Success',
             newOrder
@@ -32,4 +34,11 @@ const createOrder = async (req, res) => {
     } catch (err) {
         return res.status(500).json({ err: err.message })
     }
+}
+
+const sold = async (id, quantity, oldInStock, oldStock) => {
+    await Product.findOneAndUpdate({ _id: id }, {
+        inStock: oldInStock - quantity,
+        sold: quantity + oldStock
+    })
 }
