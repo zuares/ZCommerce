@@ -3,6 +3,7 @@ export const Actions = {
     Notify: "NOTIFY",
     Auth: "AUTH",
     Cart: "CART",
+    Order: "ORDER",
 }
 
 export const addToCart = (product, cart) => {
@@ -45,5 +46,12 @@ export const deCrease = (data, id) => {
 export const deleteItem = (data, id) => {
     const newData = data.filter(item => item._id !== id)
     return ({ type: 'CART', payload: newData })
+
+}
+
+export const updateItem = (data, id, post, type) => {
+    const newData = data.map(item => item._id === id ? post : item)
+
+    return ({ type, payload: newData })
 
 }

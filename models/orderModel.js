@@ -3,15 +3,22 @@ import mongoose from 'mongoose';
 const orderShcema = new mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
-        ref: 'users'
+        ref: 'user'
     },
     address: String,
     mobile: String,
     cart: Array,
+    total: Number,
     delivered: {
         type: Boolean,
         default: false
     },
+    paid: {
+        type: Boolean,
+        default: false
+    },
+    dateOfPayment: Date,
+
 }, {
     timestamps: true
 })

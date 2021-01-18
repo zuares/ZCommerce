@@ -7,7 +7,6 @@ function Auth({ children }) {
     const { state } = useContext(DataContext)
     const { notify, auth } = state
     const router = useRouter()
-
     useEffect(() => {
         if (auth && auth.access_token) return router.push('/')
     }, [auth])

@@ -9,8 +9,26 @@ export default async (req, res) => {
     switch (req.method) {
         case "POST":
             await createOrder(req, res)
-        default:
             break;
+        case "GET":
+            await getOrders(req, res)
+            break;
+    }
+}
+
+const getOrders = async (req, res) => {
+    try {
+        const result = await auth(req, res)
+
+        let orders;
+        if (result.role !== "admin") {
+            orders = await Order.find({ user: result.id }).populate("user", "-password")
+        } else {
+            orders = await Order.find().populate("user", "-password")
+        }
+        res.json({ orders })
+    } catch (err) {
+        return res.status(500).json({ err: err.message })
     }
 }
 
@@ -30,7 +48,6 @@ const createOrder = async (req, res) => {
             msg: 'Payment Success',
             newOrder
         })
-
     } catch (err) {
         return res.status(500).json({ err: err.message })
     }

@@ -17,6 +17,11 @@ function reducers(state, action) {
                 ...state,
                 cart: action.payload
             }
+        case Actions.Order:
+            return {
+                ...state,
+                order: action.payload
+            }
 
         default:
             return state
