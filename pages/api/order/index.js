@@ -9,9 +9,9 @@ export default async (req, res) => {
     switch (req.method) {
         case "POST":
             await createOrder(req, res)
+            break;
         case "GET":
             await getOrders(req, res)
-        default:
             break;
     }
 }

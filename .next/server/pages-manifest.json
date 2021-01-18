@@ -2,9 +2,14 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/profile": "pages/profile.js",
-  "/cart": "pages/cart.js",
+  "/order/[id]": "pages/order/[id].js",
   "/": "pages/index.js",
+  "/login": "pages/login.js",
+  "/cart": "pages/cart.js",
+  "/api/auth/accessToken": "pages/api/auth/accessToken.js",
   "/api/order": "pages/api/order.js",
-  "/api/auth/accessToken": "pages/api/auth/accessToken.js"
+  "/api/product": "pages/api/product.js",
+  "/profile": "pages/profile.js",
+  "/api/product/[id]": "pages/api/product/[id].js",
+  "/api/order/[id]": "pages/api/order/[id].js"
 }

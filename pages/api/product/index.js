@@ -17,7 +17,7 @@ const getProducts = async (req, res) => {
         const data = await Product.find();
         if (!data)
             return res.status(400).json({ err: `Product Empty` });
-
+        console.log(data);
         return res.json(data)
 
     } catch (err) {

@@ -9,6 +9,7 @@ function DataProvider({ children }) {
     const initialState = { notify: {}, auth: {}, cart: [], order: [] }
     const [state, dispatch] = useReducer(reducers, initialState)
     const { cart, auth } = state
+
     useEffect(() => {
         const fetchUser = async () => {
             const data = await getData('auth/accessToken')

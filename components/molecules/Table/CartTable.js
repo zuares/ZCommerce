@@ -43,7 +43,7 @@ function CartTable({ item, id }) {
                         <span className={`mx-3 font-bold text-sm text-blue-600 `} >{item.quantity}</span>
                         <button className={`px-2 bg-green-300 text-white focus:outline-none disabled:opacity-50 font-bold`} onClick={() => dispatch(inCrease(cart, item._id))} disabled={item.quantity === item.inStock ? true : false}  >+</button>
                     </td >
-                    <td className={`p-4`}>$ {item.price}</td>
+                    <td className={`p-4`}>$ {item.price * item.quantity}</td>
                     <td className={`p-4`}>
                         <button className={`p-1 bg-red-400`} onClick={() => dispatch(deleteItem(cart, item._id))} >
                             <IcDelete className={`w-5 h-5 text-white`} />

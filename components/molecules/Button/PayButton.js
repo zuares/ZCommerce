@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
-import { postData } from '../../../utils/fetchData';
+import React, { useContext, useEffect, useRef } from 'react';
+import { DataContext } from '../../../store/GlobalState';
+import { patchData } from '../../../utils/fetchData';
+import { updateItem } from '../../../store/Actions';
 
-function PayButton({ total, address, mobile, state, dispatch }) {
+function PayButton({ odr }) {
     const refPayBtn = useRef()
-    const { cart, auth, order } = state
+    const { state, dispatch } = useContext(DataContext)
+    const { auth, order } = state
     useEffect(() => {
         paypal.Buttons({
             createOrder: function (data, actions) {
@@ -11,7 +14,7 @@ function PayButton({ total, address, mobile, state, dispatch }) {
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '0.01'
+                            value: odr.total
                         }
                     }]
                 });
@@ -20,13 +23,15 @@ function PayButton({ total, address, mobile, state, dispatch }) {
                 // This function captures the funds from the transaction.
                 return actions.order.capture().then(function (details) {
                     // This function shows a transaction success message to your buyer.
-                    postData('order', { address, mobile, cart, total }, auth.access_token)
+                    patchData(`order/${odr._id}`, null, auth.access_token)
                         .then(res => {
                             if (res.err) return dispatch({ type: "NOTIFY", payload: { msg: { err: res.err } } })
 
-                            dispatch({ type: "CART", payload: [] })
-                            dispatch({ type: "ORDER", payload: [...order, res.orders] })
-                            dispatch({ type: "NOTIFY", payload: { msg: { success: res.msg } } })
+                            dispatch(updateItem(order, odr._id), {
+                                ...order, paid: true, dateOfPayment: new Date().toISOString()
+                            }, "ORDER")
+
+                            return dispatch({ type: "NOTIFY", payload: { msg: { success: res.msg } } })
                         })
 
                     alert('Transaction completed by ' + details.payer.name.given_name);
@@ -36,7 +41,7 @@ function PayButton({ total, address, mobile, state, dispatch }) {
 
     }, []);
     return (
-        <div ref={refPayBtn} ></div>
+        <div ref={refPayBtn} className="max-w-sm mt-6"  ></div>
     );
 }
 
