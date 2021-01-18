@@ -3,6 +3,7 @@ export const Actions = {
     Notify: "NOTIFY",
     Auth: "AUTH",
     Cart: "CART",
+    Order: "ORDER",
 }
 
 export const addToCart = (product, cart) => {

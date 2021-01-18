@@ -3,7 +3,7 @@ import { postData } from '../../../utils/fetchData';
 
 function PayButton({ total, address, mobile, state, dispatch }) {
     const refPayBtn = useRef()
-    const { cart, auth } = state
+    const { cart, auth, order } = state
     useEffect(() => {
         paypal.Buttons({
             createOrder: function (data, actions) {
@@ -25,6 +25,7 @@ function PayButton({ total, address, mobile, state, dispatch }) {
                             if (res.err) return dispatch({ type: "NOTIFY", payload: { msg: { err: res.err } } })
 
                             dispatch({ type: "CART", payload: [] })
+                            dispatch({ type: "ORDER", payload: [...order, res.orders] })
                             dispatch({ type: "NOTIFY", payload: { msg: { success: res.msg } } })
                         })
 

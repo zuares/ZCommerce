@@ -7,6 +7,7 @@ import valid from '../utils/validate'
 import Notify from '../components/molecules/Notify'
 import { patchData } from '../utils/fetchData';
 import { ImageUpload } from '../utils/ImageUpload';
+import Link from 'next/link';
 
 
 function profile() {
@@ -21,11 +22,13 @@ function profile() {
     const [data, setData] = useState(init)
     const { avatar, name, password, password2 } = data
 
-    const { state: { auth, notify }, dispatch } = useContext(DataContext)
+    const { state: { auth, notify, order }, dispatch } = useContext(DataContext)
     useEffect(() => {
         if (auth.user)
             setData({ ...data, name: auth.user.name, email: auth.user.email })
     }, [auth.user]);
+
+
     const onChange = (e) => {
         const { name, value } = e.target
         setData({ ...data, [name]: value })
@@ -93,9 +96,9 @@ function profile() {
         <MainApp>
             <Content title="Profile" >
                 {notify.msg ? <Notify msg={notify.msg} /> : null}
-                <div className={`  lg:max-w-xl flex `} >
+                <div className={` w-full lg:flex space-y-16 `} >
 
-                    <div className={` w-2/3`} >
+                    <div className={`w-2/3 space-y-4`} >
                         <div>
                             <h1>{auth.user.role == "user" ? "User Profile" : "Admin Profile"}</h1>
                         </div>
@@ -113,8 +116,65 @@ function profile() {
                         <button onClick={onUpdate} className={`px-6 py-2.5 bg-green-300 focus:outline-none text-white font-bold`} >Update</button>
                     </div>
 
-                    <div className={` w-2/3 ml-8`} >
+                    <div className={` lg:w-2/4 lg:ml-8 `} >
                         <h2>Orders</h2>
+                        <div className={`my-3`} >
+                            <table className={`table table-fixed  w-full border-separate   shadow-inner   pb-12`} >
+                                <thead className={`text-true-gray-300 border-b `} >
+                                    <tr className={``} >
+                                        <th className={`p-4 shadw`} >
+                                            #
+                                      </th>
+                                        <th className={``} >
+                                            Date
+                                     </th>
+                                        <th className={``} >
+                                            Total
+                                     </th>
+                                        <th className={``} >
+                                            Delivered
+                                        </th>
+                                        <th className={``} >
+                                            Action
+                                         </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody className={`text-center text-gray-700`} >
+                                    {
+                                        order.map(item => {
+                                            console.log(item);
+                                            return (
+                                                <tr key={item._id} className={`p-20`}>
+                                                    <td className={`p-4  font-bold s`}>{1}</td>
+                                                    <td className={`p-4`}>{
+                                                        new Date(item.createdAt).toLocaleDateString()
+                                                    }</td>
+                                                    <td className={`p-4`}>
+                                                        $ {item.total}
+                                                    </td>
+                                                    <td className={`p-4`}>
+                                                        {
+                                                            order.deliverd ? <i>Oke</i> : <i>No Oke</i>
+                                                        }
+                                                    </td>
+                                                    <td className={`p-4`}>
+                                                        <Link href={`/order/${item._id}`} >
+                                                            <a >
+                                                                Details
+                                                            </a>
+                                                        </Link>
+                                                    </td>
+
+
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
 
                 </div>
