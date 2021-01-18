@@ -14,7 +14,6 @@ function cart() {
     const [address, setAddress] = useState('')
     const [mobile, setMobile] = useState('')
     const [payment, setPayment] = useState(false)
-    console.log(cart);
     const handlePayment = () => {
         if (!address || !mobile)
             return dispatch({ type: "NOTIFY", payload: { msg: { err: `Please Add your address and mobile` } } })

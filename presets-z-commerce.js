@@ -18,6 +18,8 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            display: ['hover', 'focus'],
+            visibility: ['hover', 'focus'],
         },
     },
     plugins: [],
